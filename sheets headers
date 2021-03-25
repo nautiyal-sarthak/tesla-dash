@@ -1,0 +1,103 @@
+
+    phantom :
+
+		
+			park_id
+			park_date
+			charge_session_id
+			park_start_time
+			park_start_odometer
+			park_start_longitude
+			park_start_latitude
+			park_start_ideal_battery_range
+			park_start_energy_added
+			park_start_battery_range
+			park_start_miles_added_ideal
+			park_start_miles_added_rated
+			park_start_est_battery_range
+			park_start_usable_battery_level
+			park_start_battery_level
+			park_start_temp
+			park_sentry_mode
+			park_end_odometer
+			park_end_longitude
+			park_end_latitude
+			park_end_ideal_battery_range
+			park_end_energy_added
+			park_end_battery_range
+			park_end_miles_added_ideal
+			park_end_miles_added_rated
+			park_end_est_battery_range
+			park_end_usable_battery_level
+			park_end_battery_level
+			park_end_temp
+			park_end_time
+		
+	
+    trip:
+		
+			trip_id
+			trip_date
+			charge_session_id
+			trip_start_time
+			trip_start_odometer
+			trip_start_longitude
+			trip_start_latitude
+			trip_start_ideal_battery_range
+			trip_start_energy_added
+			trip_start_battery_range
+			trip_start_miles_added_ideal
+			trip_start_miles_added_rated
+			trip_start_est_battery_range
+			trip_start_usable_battery_level
+			trip_start_battery_level
+			trip_start_temp
+			trip_end_odometer
+			trip_end_longitude
+			trip_end_latitude
+			trip_end_ideal_battery_range
+			trip_end_energy_added
+			trip_end_battery_range
+			trip_end_miles_added_ideal
+			trip_end_miles_added_rated
+			trip_end_est_battery_range
+			trip_end_usable_battery_level
+			trip_end_battery_level
+			trip_end_temp
+			trip_end_time
+		
+	
+
+
+    charge :
+		
+			session_id
+			session_date
+			session_start_time
+			session_start_odometer
+			session_start_longitude
+			session_start_latitude
+			session_start_ideal_battery_range
+			session_start_energy_added
+			session_start_battery_range
+			session_start_miles_added_ideal
+			session_start_miles_added_rated
+			session_start_est_battery_range
+			session_start_usable_battery_level
+			session_start_battery_level
+			session_end_odometer
+			session_end_longitude
+			session_end_latitude
+			session_end_ideal_battery_range
+			session_end_energy_added
+			session_end_battery_range
+			session_end_miles_added_ideal
+			session_end_miles_added_rated
+			session_end_est_battery_range
+			session_end_usable_battery_level
+			session_end_battery_level
+			session_end_time
+			is_fast_charging
+			is_free
+		
+
