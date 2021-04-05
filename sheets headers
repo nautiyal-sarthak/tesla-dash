@@ -97,7 +97,7 @@
 			session_end_usable_battery_level
 			session_end_battery_level
 			session_end_time
-			is_fast_charging
+			charge_voltage
 			is_free
 		
 
