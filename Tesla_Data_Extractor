@@ -64,9 +64,11 @@ function getData() {
     try {
       sheet.setActiveSheet(sheet.getSheetByName(name + "_" + today));
     } catch (e) {
+      Logger.log("Deleting Yest Master Sheet")
       var sheet_yest = sheet.getSheetByName(name + "_" + yest);
       sheet.deleteSheet(sheet_yest);
 	  
+      Logger.log("Creating Today's Master Sheet")
       sheet.insertSheet(name + "_" + today);
     }
     
@@ -145,6 +147,9 @@ function getData() {
 	var previous_charge_voltage = a_sheet.getRange(prev_row_index, charge_voltage).getValues();
     
     Logger.log("Checking charging session")
+    Logger.log("latest charging State = " + latest_charge_state[0][0])
+    Logger.log("previous charging State = " + previous_charge_state[0][0])
+    
     //Charging Session update
     if(latest_charge_state[0][0] == "Charging" && previous_charge_state[0][0] != "Charging"){
       //session started
@@ -197,9 +202,12 @@ function getData() {
     }
     
     //trip update
+    Logger.log("Checking trip details")
+    Logger.log("latest odometer = " + latest_odometer[0][0])
+    Logger.log("previous odometer = " + previous_odometer[0][0])
+    
+    
     if(previous_odometer[0][0] < latest_odometer[0][0]){
-      
-      Logger.log("Checking trip details")  
       //getting the active charge session
       var sheet_charge = SpreadsheetApp.openById(charge_tracker_id);
       var a_sheet = sheet_charge.getActiveSheet();
@@ -209,6 +217,7 @@ function getData() {
       var trip_sheet = SpreadsheetApp.openById(trip_tracker_id);
       var a_sheet = trip_sheet.getActiveSheet();
       var data = trip_sheet.getDataRange().getValues();
+      Logger.log("values at index 16= " + data[data.length - 1][16])
       if(data[data.length - 1][16] != ""){
         Logger.log("trip started")
         //start trip
@@ -236,11 +245,17 @@ function getData() {
       }
     }
     
+    Logger.log("Is user Present = " + v_user_present[0][0])
+    
     if(v_user_present[0][0] != true){
       // update the end time with : timestamp
       var trip_sheet = SpreadsheetApp.openById(trip_tracker_id);
       var a_sheet = trip_sheet.getActiveSheet();
       var data = trip_sheet.getDataRange().getValues();
+      
+      Logger.log("values at index 15= " + data[data.length - 1][15])
+      Logger.log("values at index 16= " + data[data.length - 1][16])
+      
       if(data[data.length - 1][16] == "" && data[data.length - 1][15] != ""){
         Logger.log("Trip finished")  
         var log_time = v_timestamp[0]
@@ -275,13 +290,20 @@ function getData() {
     
     
     //parking tracker
+    Logger.log("Is triping = " + isTriping)
+    Logger.log("Is charging = " + isCharging)
+    Logger.log("Is day end = " + isDayEnd)
+    
     if(isTriping == 1 || isCharging == 1 || isDayEnd == true){
       
       // update the end time with : timestamp
-      
+      Logger.log("checking Park session")
       var park_sheet = SpreadsheetApp.openById(park_tracker_id);
       var a_sheet = park_sheet.getActiveSheet();
       var data = park_sheet.getDataRange().getValues();
+      
+      Logger.log("values at index 16= " + data[data.length - 1][16].toString())
+      Logger.log("values at index 17= " + data[data.length - 1][17])
       
       if(data[data.length - 1][17] == "" && data[data.length - 1][16].toString() != ""){
         Logger.log("Ending Park session")  
@@ -319,6 +341,10 @@ function getData() {
     var parkgin_sheet = SpreadsheetApp.openById(park_tracker_id);
     var a_sheet = parkgin_sheet.getActiveSheet();
     var pdata = parkgin_sheet.getDataRange().getValues();
+    
+    Logger.log("park data values at index 17= " + pdata[pdata.length - 1][17])
+    Logger.log("charge data values at index 14= " + cdata[cdata.length - 1][14])
+    Logger.log("trip data values at index 16= " + tdata[tdata.length - 1][16])
     
     if((pdata[pdata.length - 1][17] != "") && (cdata[cdata.length - 1][14] != "") && (tdata[tdata.length - 1][16] != "")){
       
