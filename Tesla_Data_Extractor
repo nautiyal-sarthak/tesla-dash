@@ -63,13 +63,13 @@ function getData() {
     //Create new sheet for new Car Name if it doesn't already exist
     try {
       sheet.setActiveSheet(sheet.getSheetByName(name + "_" + today));
-    } catch (e) {
+    } catch (e) {  
+      Logger.log("Creating Today's Master Sheet")
+      sheet.insertSheet(name + "_" + today);
+      
       Logger.log("Deleting Yest Master Sheet")
       var sheet_yest = sheet.getSheetByName(name + "_" + yest);
       sheet.deleteSheet(sheet_yest);
-	  
-      Logger.log("Creating Today's Master Sheet")
-      sheet.insertSheet(name + "_" + today);
     }
     
     //setting the flags
